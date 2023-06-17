@@ -1,0 +1,455 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --light-gray: #bababa;
+  --gray: #8d8d8d;
+  --dark-gray: #3a3a3a;
+  --white: #FFF;
+  --light-blue: #a6cbeb;
+  --blue: #4c96d7;
+  --valid: #43ac43;
+  --invalid: #d44d4d;
+}
+
+/* General Styles */
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+nav {
+  background-color: var(--dark-gray);
+}
+
+body {
+  background: url("../images/site/small_check.jpg"); 
+  color: var(--dark-gray);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* General classes */
+
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/** Specific classes */
+
+.wrapper {
+  max-width: 1000px;
+  background-color: #FFF;
+}
+
+.account {
+  padding: 0 1.5rem;
+  display: flex;
+  color: var(--dark-gray);
+  font-size: 1.2rem;
+}
+
+
+.account > a {
+  display: block;
+  color: var(--dark-gray);
+  padding: 0 .8rem;
+
+}
+
+.account > a:hover {
+  color: var(--gray);
+}
+
+.logged-welcome {
+  border-right: 2px solid var(--dark-gray);
+}
+
+.nav_links {
+  display: block;
+  color: var(--white);
+  padding: .7rem .5rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem 1rem 2rem;
+  border-top: .35rem solid var(--dark-gray);
+}
+
+/* HEDAER*/
+
+/*? forms classes */
+
+.form-validation {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 1.3rem;
+}
+
+.form-validation > label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-validation input {
+  border: 1px solid var(--dark-gray);
+  padding: .2rem .1rem;
+  line-height: 1.4;
+  border-radius: 3px;
+  width: 170px;
+}
+
+.form-validation input:focus {
+  outline: 1px solid var(--blue);
+  border: 1px solid var(--blue);
+}
+
+.form-validation input:not([type="submit"]):invalid {
+  border-left: 3px solid var(--invalid);
+}
+
+.form-validation input:not([type="submit"]):valid {
+  border-left: 3px solid var(--valid);
+}
+
+/* .form-validation input[type="submit"] { */
+input[type="submit"] {
+  font-size: 1.2rem;
+  background-color: var(--blue);
+  border: 1px solid var(--dark-gray);
+  padding: .3rem;
+  margin-top: .4rem;
+}
+
+/** End of specific classes*/
+
+/* Home View */
+
+.home_hero {
+  background: url('../images/delorean.jpg') no-repeat center center;
+  background-size: 100%;
+  aspect-ratio: 3 / 2;
+  grid-row: 1 / 2;
+  padding: 0 1rem;
+  width: 100%;  
+}
+.home_main {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.home_main_info > p {
+  color: var(--blue);
+  font-weight: normal;
+}
+
+.home_own_link {
+  display: block;
+  border: 1px solid var(--dark-gray);
+  padding: .5rem 1.3rem;
+  background-color: var(--blue);
+  color: #000;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.home_own_link-first {
+  display: none;
+}
+
+.home_own_link-sec {
+  display: inline-block;
+}
+
+.home_reviews_list {
+  list-style: disc;
+  padding-left: 2rem;
+}
+
+.home_upgrades {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.home_upgrades > h2 {
+  grid-column: 1 / span 2;
+}
+
+.upgrades_card {
+  text-align: center;
+}
+
+.upgrades_card > a {
+  text-decoration: underline;
+}
+
+.upg_card_img {
+  border: 1px solid var(--dark-gray);
+  padding: 1rem;
+  min-height: 120px;
+  background-color: var(--blue);
+  color: var(--dark-gray);
+  font-weight: 600;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/** ERROR PAGE */
+
+.p_error_title {
+  margin: 1rem .5rem;
+}
+
+.p_error_msg {
+  margin: 1rem;
+}
+/** END ERROR PAGE */
+
+/** LOGIN PAGE */
+
+.login-main {
+  padding: 0 1rem;
+}
+
+.login-title {
+  padding: 1rem 0;
+}
+
+
+
+.goToRegister {
+  display: block;
+  text-decoration: underline;
+  margin-bottom: .3rem;
+}
+
+/** END LOGIN PAGE */
+
+/** REGISTER PAGE */
+
+.register-main {
+  padding: 0 1rem;
+}
+
+.register-title {
+  padding: 1rem 0;
+}
+
+.form-validation small {
+  color: #4d5f85;
+  font-size: .8rem;
+}
+
+
+/** END OF REGISTER PAGE */
+
+/** VEHICLES PAGE */
+
+.vehicles-main {
+  margin: 2rem 1rem;
+}
+
+.vehicles-title {
+  padding: 1rem 0;
+}
+
+.vehicles-title + p {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.v-man-list {
+  list-style: disc;
+  padding: 0 0 2rem 2rem;
+}
+
+.add-classification-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  margin: 2rem 1rem;
+}
+
+.add-classification-main > p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.add-classification-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-bottom: 1rem;
+}
+
+.add-classification-form span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: .4rem;
+}
+
+.add-classification-form > label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-bottom: 2rem;
+}
+
+.add-vehicles-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.4rem;
+}
+
+.add-vehicles-alert {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1.4rem 0;
+}
+
+.add-vehicles-form > label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: .1rem;
+}
+
+.add-vehicles-form > label > span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/** END OF VEHICLES PAGE */
+
+/** ADMIN VIEW */
+
+.main-admin {
+  padding: 2rem;
+}
+
+.main-admin > h1 {
+  padding-bottom: 1.2rem;
+}
+
+.main-admin-info {
+  list-style: disc;
+  padding: 2rem 2.2rem;
+}
+
+.main-admin > h2 {
+  padding-bottom: 1rem;
+}
+
+.main-inventory-link {
+  display: block;
+  text-decoration: underline;
+  padding: 1rem 0;
+}
+
+
+/** END OF ADMIN VIEW */
+
+/** Tablet to Desktop */
+
+@media screen and (min-width: 700px) {
+  .wrapper {
+    margin: 1rem auto 0;
+    border-radius: 10px;
+    border: 4px solid var(--blue);
+  }
+
+  nav {
+    font-size: 1.1rem;
+  }
+  
+  .nav_links {
+    padding: 1.2rem 1rem;
+  }
+
+  .nav_links:hover {
+    background-color: var(--blue);
+    color: var(--dark-gray);
+    font-weight: bold;
+  }
+
+  .home_main {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  .home_hero {
+    grid-column: 1 / span 2;
+    
+  }
+
+  .home_reviews > h2 {
+    padding-bottom: 2rem;
+  }
+
+  .home_reviews {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+
+  }
+
+  .home_reviews_list {
+     display: flex;
+     flex-direction: column;
+     gap: 1.2rem;
+  }
+
+  .home_upgrades {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .home_own_link-first {
+    display: inline-block;
+  }
+
+  .home_own_link-sec {
+    display: none;
+  }
+
+  .home_main_info {
+    padding: 1.5rem 2rem;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 2rem;
+    flex-flow: column;
+    align-items: start;
+  }
+
+  /** form validation */
+
+  .form-validation {
+    align-items: start;
+  }
+}

@@ -1,0 +1,1 @@
+SELECT clientEmail FROM clients WHERE clientEmail = 'test@test.com'

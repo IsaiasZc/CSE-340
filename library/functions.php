@@ -20,23 +20,13 @@ function checkClassificationName($classificationName)
   return preg_match($pattern, $classificationName);
 }
 
-function buildClassificationList($classifications, $classificationId = null)
+function buildClassificationList($classifications)
 {
 
   $classificationList = '<select name="classificationId" id="classificationList">';
   $classificationList .= "<option>Choose a Classification</option>";
   foreach ($classifications as $classification) {
     $classificationList .= "<option value='$classification[classificationId]'";
-
-
-    if (isset($classificationId)) {
-      if (intval($classification['classificationId']) === intval($classificationId))
-      // if($classification['classificationId'] === $classificationId)
-      {
-        $classificationList .= ' selected ';
-      }
-    }
-
     $classificationList .= ">$classification[classificationName]</option>";
   }
   $classificationList .= '</select>';

@@ -1,18 +1,20 @@
 <?php
 // checks that a client is "loggedin" AND has a clientLevel greater than "1" to access the view.
-if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
   header('Location: /phpmotors/');
   exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- normalize -->
   <!-- <link rel="stylesheet" href="./css/normalize.css"> -->
-  
+
   <link rel="stylesheet" media="screen" href="../css/style.css">
 
   <!-- Fonts from google -->
@@ -22,6 +24,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
 
   <title>Vehicles | PHP Motors</title>
 </head>
+
 <body>
   <div class="wrapper" id="wrapper">
     <header>
@@ -39,10 +42,31 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
         <li><a href="/phpmotors/vehicles/?action=addClassification">Add Classification</a></li>
         <li><a href="/phpmotors/vehicles/?action=addVehicles">Add Vehicles</a></li>
       </ul>
+
+      <?php
+      if (isset($message)) {
+        echo $message;
+      }
+      if (isset($classificationList)) {
+        echo '<h2>Vehicles By Classification</h2>';
+        echo '<p>Choose a classification to see those vehicles</p>';
+        echo $classificationList;
+      }
+      ?>
+
+      <noscript>
+        <p><strong>JavaScript Must Be Enabled to use this Page</strong></p> 
+      </noscript>
+
+      <!-- Table element -->
+      <table id="inventoryDisplay"></table>
     </main>
     <footer class="footer">
       <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
   </div>
+
+  <script src="../js/inventory.js"></script>
 </body>
+
 </html>

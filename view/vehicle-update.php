@@ -73,7 +73,7 @@ $classifList .= '</select>';
 
       <h2 class="add-vehicles-alert">*Note all Fields are Required</h2>
 
-      <form class="add-vehicles-form" id="mofidy-vehicles-form" method="post" action="/phpmotors/vehicles/index.php">
+      <form class="add-vehicles-form form-validation" id="mofidy-vehicles-form" method="post" action="/phpmotors/vehicles/index.php">
         <label for="classificationId">
           <?php echo $classifList; ?>
         </label>

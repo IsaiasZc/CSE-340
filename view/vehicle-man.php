@@ -38,7 +38,7 @@ if(isset($_SESSION['message'])) {
       <!-- <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; ?> -->
       <?php echo $navList; ?>
     </nav>
-    <main class="login-main">
+    <main class="stnd-main">
       <h1 class="login-title">Vehicles Management</h1>
 
       <ul class="v-man-list">

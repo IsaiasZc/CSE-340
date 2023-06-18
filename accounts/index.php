@@ -144,6 +144,10 @@ switch ($action) {
 
   case 'client-update':
     $clientInfo = $_SESSION['clientData'];
+
+    if(count($clientInfo) < 1){
+      $message = '<p class="bad-notice">Sorry, no account information could be found.</p>';
+    }
     include '../view/client-update.php';
     exit;
     break;

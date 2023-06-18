@@ -35,7 +35,7 @@ if (!$_SESSION['loggedin']) {
       <!-- <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; ?> -->
       <?php echo $navList; ?>
     </nav>
-    <main>
+    <main class="stnd-main">
       <h1>Manage Account</h1>
 
       <?php
@@ -44,7 +44,7 @@ if (!$_SESSION['loggedin']) {
       }
       ?>
       <h2>Account Update</h2>
-      <form method="post" action="/phpmotors/accounts/">
+      <form class="flex-form form-validation" method="post" action="/phpmotors/accounts/">
         <label for="clientFirstname">First Name:</label>
         <input type="text" id="clientFirstname" name="clientFirstname" value="<?php if(isset($clientInfo['clientFirstname'])){ echo $clientInfo['clientFirstname'];} ?>" required>
 
@@ -65,7 +65,7 @@ if (!$_SESSION['loggedin']) {
         <br>
         *Note your original password will be changed.
       </p>
-      <form method="post" action="/phpmotors/accounts/">
+      <form class="flex-form form-validation" method="post" action="/phpmotors/accounts/">
         <label for="clientPassword">New Password:</label>
         <input type="password" id="clientPassword" name="clientPassword" autocomplete="off" required>
 

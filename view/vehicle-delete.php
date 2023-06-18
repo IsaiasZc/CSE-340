@@ -67,8 +67,7 @@ $classifList .= '</select>';
 
       <h2 class="add-vehicles-alert">Confirm Vehicle Deletion. The delete is permanent.</h2>
 
-      <form class="add-vehicles-form" id="mofidy-vehicles-form" method="post" action="/phpmotors/vehicles/">
-        <fieldset>
+      <form class="flex-form" id="mofidy-vehicles-form" method="post" action="/phpmotors/vehicles/">
           <label for="invMake">Vehicle Make</label>
           <input type="text" readonly name="invMake" id="invMake" <?php
         if(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?>>
@@ -88,7 +87,6 @@ $classifList .= '</select>';
           <input type="hidden" name="invId" value="<?php if(isset($invInfo['invId'])){
         echo $invInfo['invId'];} ?>">
 
-        </fieldset>
       </form>
 
     </main>

@@ -146,6 +146,10 @@ $classifList .= '</select>';
 
         <!-- Modifying the action name - value pair -->
         <input type="hidden" name="action" value="updateVehicle">
+        
+        <!-- Store the primary key -->
+        <input type="hidden" name="invId" value="<?php if(isset($invInfo['invId'])){ echo $invInfo['invId'];} 
+        elseif(isset($invId)){ echo $invId; } ?>">
       </form>
 
     </main>

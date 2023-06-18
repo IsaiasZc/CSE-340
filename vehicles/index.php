@@ -89,7 +89,7 @@ switch ($action) {
     $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
     // Call the buildClassificationList() function and store the resulting string
-    $classificationList = buildClassificationList($classifications, $classificationId);
+    $classificationList = buildClassificationList($classifications);
 
     // Check for missing data
     if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {
@@ -137,6 +137,42 @@ switch ($action) {
       $message = 'Sorry, no vehicles information could be found';
     };
     include '../view/vehicle-update.php';
+    break;
+
+  case 'updateVehicle':
+    $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+    $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
+    $invColor = filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    // variable to store the id
+    $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    
+    if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {
+    $message = '<p>Please complete all information for the item! Double check the classification of the item.</p>';
+    include '../view/vehicle-update.php';
+    exit;
+    }
+    $updateResult = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId);
+    if ($updateResult) {
+      $message = "<p>Congratulations, the $invMake $invModel was successfully updated.</p>";
+      $_SESSION['message'] = $message;
+      header('location: /phpmotors/vehicles/');
+
+      exit;
+    } else {
+      $message = "<p>Error. The new vehicle was not updated.</p>";
+      include '../view/vehicle-update.php';
+      exit;
+    }
+    break;
+
+  case 'del':
+    include '../view/vehicle-delete.php';
     break;
 
   default:

@@ -7,7 +7,7 @@
   <!-- normalize -->
   <!-- <link rel="stylesheet" href="./css/normalize.css"> -->
   
-  <link rel="stylesheet" media="screen" href="./css/style.css">
+  <link rel="stylesheet" media="screen" href="../css/style.css">
 
   <!-- Fonts from google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

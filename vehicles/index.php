@@ -193,7 +193,7 @@ switch ($action) {
       header('location: /phpmotors/vehicles/');
       exit;
     } else {
-      $message = "<p class='notice'>Error: $invMake $invModel was not
+      $message = "<p class='bad-notice'>Error: $invMake $invModel was not
 deleted.</p>";
       $_SESSION['message'] = $message;
       header('location: /phpmotors/vehicles/');

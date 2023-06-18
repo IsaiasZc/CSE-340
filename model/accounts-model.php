@@ -55,4 +55,43 @@ function getClient($clientEmail){
   $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
   return $clientData;
- }
+}
+
+function getClientById($clientId){
+  $db = phpmotorsConnect();
+  $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientId = :clientId';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+  $stmt->execute();
+  $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $clientData;
+}
+
+// Update the client data based on the clientId
+function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId) {
+// Update the client record
+  $db = phpmotorsConnect(); // Connect to the database
+  $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId'; // SQL statement
+  $stmt = $db->prepare($sql); // prepare the statement
+  $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR); // bind values to the placeholders
+  $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR); // bind values to the placeholders
+  $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR); // bind values to the placeholders
+  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT); // bind values to the placeholders
+  $stmt->execute(); // update the data
+  $rowsChanged = $stmt->rowCount(); // get the number of rows changed
+  $stmt->closeCursor(); // close the database connection
+  return $rowsChanged; // return the number of rows changed
+}
+
+function updatePassword($clientPassword, $clientId) {
+  $db = phpmotorsConnect(); // Connect to the database
+  $sql = 'UPDATE clients SET clientPassword = :clientPassword WHERE clientId = :clientId'; // SQL statement
+  $stmt = $db->prepare($sql); // prepare the statement
+  $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR); // bind values to the placeholders
+  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT); // bind values to the placeholders
+  $stmt->execute(); // update the data
+  $rowsChanged = $stmt->rowCount(); // get the number of rows changed
+  $stmt->closeCursor(); // close the database connection
+  return $rowsChanged; // return the number of rows changed
+}

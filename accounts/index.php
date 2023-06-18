@@ -57,7 +57,7 @@ switch ($action) {
 
     // Check for existing email address in the table
     if ($existingEmail) {
-      $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+      $message = '<p class="bad-notice">That email address already exists. Do you want to login instead?</p>';
       include '../view/login.php';
       exit;
     }
@@ -96,7 +96,7 @@ switch ($action) {
     
     // Run basic checks, return if errors
     if (empty($clientEmail) || empty($passwordCheck)) {
-      $_SESSION['message'] = '<p class="notice">Please provide a valid email address and password.</p>';
+      $_SESSION['message'] = '<p class="bad-notice">Please provide a valid email address and password.</p>';
      include '../view/login.php';
      exit;
     }
@@ -114,7 +114,7 @@ switch ($action) {
     // If the hashes don't match create an error
     // and return to the login view
     if(!$hashCheck) {
-      $message = '<p class="notice">Please check your password and try again.</p>';
+      $message = '<p class="bad-notice">Please check your password and try again.</p>';
       include '../view/login.php';
       exit;
     }
@@ -141,6 +141,88 @@ switch ($action) {
     session_destroy();
     header('Location: /phpmotors/');
     break;
+
+  case 'client-update':
+    $clientInfo = $_SESSION['clientData'];
+    include '../view/client-update.php';
+    exit;
+    break;
+
+  case 'updateAccount':
+    $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $clientInfo = $_SESSION['clientData'];
+
+
+    $clientEmail = checkEmail($clientEmail);
+
+    // validate if the email is the same of the session
+    if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
+      $existingEmail = checkExistingEmail($clientEmail);
+      if ($existingEmail) {
+        $message = '<p class="bad-notice">That email address already exists. Please try again.</p>';
+        include '../view/client-update.php';
+        exit;
+      }
+    }
+
+    if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
+      $message = '<p>Please provide information for all empty form fields.</p>';
+      include '../view/client-update.php';
+      exit;
+    }
+
+    $updateResult = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+
+    if ($updateResult) {
+      $_SESSION['message'] = "<p class='notice'>Congratulations, $clientFirstname your account information was successfully updated.</p>";
+      $_SESSION['clientData'] = getClientById($clientId);
+      header('location: /phpmotors/accounts/?action=admin');
+      exit;
+    } else {
+      $_SESSION['message'] = "<p class='bad-notice'>Error. The account information was not updated.</p>";
+      include '../view/client-update.php';
+      exit;
+    }
+    break;
+  
+  case 'updatePassword':
+    $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $checkPassword = checkPassword($clientPassword);
+    $clientInfo = $_SESSION['clientData'];
+
+    if (empty($checkPassword)) {
+      $message = '<p class="bad-notice">Please provide a valid password.</p>';
+      include '../view/client-update.php';
+      exit;
+    }
+
+    $clientData = getClient($clientInfo['clientEmail']);
+
+    // verify if the password is the same of the session
+    if (password_verify($clientPassword, $clientData['clientPassword'])) {
+      $message = '<p class="bad-notice">The password is the same of the session. Please try again.</p>';
+      include '../view/client-update.php';
+      exit;
+    }
+
+    $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+    $updateResult = updatePassword($hashedPassword, $clientId);
+
+    if ($updateResult) {
+      $_SESSION['message'] = "<p class='notice'>Congratulations, your password was successfully updated.</p>";
+      header('location: /phpmotors/accounts/?action=admin');
+      exit;
+    } else {
+      $_SESSION['message'] = "<p class='bad-notice'>Error. The password was not updated.</p>";
+      include '../view/client-update.php';
+      exit;
+    }
+    break;
+
   default:
     include '../view/login.php';
     break;

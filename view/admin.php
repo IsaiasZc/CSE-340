@@ -37,12 +37,23 @@ if(!$_SESSION['loggedin']) {
     <!-- User full name in h1 tag -->
     <h1><?php echo $_SESSION['clientData']['clientFirstname'] . ' ' . $_SESSION['clientData']['clientLastname']; ?></h1>
 
+    <?php
+      if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+      }
+    ?>
     <p>You are logged in</p>
     <ul class="main-admin-info">
       <li>First Name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
       <li>Last Name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
       <li>Email: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
     </ul>
+
+    <!-- Add the accounts managment -->
+    <h2>Account Management</h2>
+
+    <p>Use this link to update account information</p>
+    <a class="main-inventory-link" href="/phpmotors/accounts/?action=client-update">Update Account Information</a>
 
     <?php 
       if ($_SESSION['clientData']['clientLevel'] > 1) {

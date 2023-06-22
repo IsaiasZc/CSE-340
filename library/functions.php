@@ -36,13 +36,11 @@ function buildClassificationList($classifications)
 
 function buildNavList($classifications)
 {
-
-
   // Build a navigation bar using the $classifications array
   $navList = "<ul class='nav_list d-flex'>";
-  $navList .= "<li><a class='nav_links' href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+  $navList .= "<li><a class='nav_links' href='/phpmotors/' title='View the PHP Motors home page'>Home</a></li>";
   foreach ($classifications as $classification) {
-    $navList .= "<li><a class='nav_links' href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+    $navList .= "<li><a class='nav_links' href='/phpmotors/vehicles/?action=classification&classificationName=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] lineup of vehicles'>$classification[classificationName]</a></li>";
   }
   $navList .= '</ul>';
   return $navList;

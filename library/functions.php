@@ -45,3 +45,31 @@ function buildNavList($classifications)
   $navList .= '</ul>';
   return $navList;
 };
+
+function getVehiclesByClassification($classificationName)
+{
+  $db = phpmotorsConnect();
+  $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+  $stmt->execute();
+  $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $vehicles;
+}
+
+function buildVehiclesDisplay($vehicles)
+{
+  $dv = '<ul id="inv-display">';
+  foreach ($vehicles as $vehicle) {
+    $dv .= '<li>';
+    $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+    $dv .= '<hr>';
+    $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+    $dv .= "<span>$vehicle[invPrice]</span>";
+    $dv .= '</li>';
+  }
+
+  $dv .= '</ul>';
+  return $dv;
+}

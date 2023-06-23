@@ -50,7 +50,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
         <input class="login-form-btn" type="submit" value="Add Classification" />
 
         <!-- Add the action name - value pair -->
-        <input type="hidden" name="action" value="classification">
+        <input type="hidden" name="action" value="addClassification">
       </form>
     </main>
     <footer class="footer">

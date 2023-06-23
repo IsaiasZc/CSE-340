@@ -33,7 +33,7 @@ switch ($action) {
     exit;
     break;
 
-  case 'addClassification':
+  case 'addClassificationView':
     include '../view/add-classification.php';
     break;
   case 'addVehicles':
@@ -42,7 +42,7 @@ switch ($action) {
     include '../view/add-vehicles.php';
     break;
 
-  case 'classification':
+  case 'addClassification':
     // Filter and store the data
     $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
@@ -211,10 +211,12 @@ deleted.</p>";
       $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
     } else {
       $vehicleDisplay = buildVehiclesDisplay($vehicles);
-    }
+    };
 
+    echo $vehicleDisplay;
+    exit;
     include ' ../view/classification.php';
-    
+
     break;
 
   default:

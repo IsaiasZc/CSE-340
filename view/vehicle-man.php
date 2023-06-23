@@ -42,7 +42,7 @@ if(isset($_SESSION['message'])) {
       <h1 class="login-title">Vehicles Management</h1>
 
       <ul class="v-man-list">
-        <li><a href="/phpmotors/vehicles/?action=addClassification">Add Classification</a></li>
+        <li><a href="/phpmotors/vehicles/?action=addClassificationView">Add Classification</a></li>
         <li><a href="/phpmotors/vehicles/?action=addVehicles">Add Vehicles</a></li>
       </ul>
 

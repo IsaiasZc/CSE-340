@@ -4,11 +4,16 @@
   box-sizing: border-box;
 }
 
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 :root {
   --light-gray: #bababa;
   --gray: #8d8d8d;
   --dark-gray: #3a3a3a;
-  --white: #FFF;
+  --white: #fff;
   --light-blue: #a6cbeb;
   --blue: #4c96d7;
   --valid: #43ac43;
@@ -25,15 +30,14 @@ ul {
   list-style: none;
 }
 
-
 nav {
   background-color: var(--dark-gray);
 }
 
 body {
-  background: url("../images/site/small_check.jpg"); 
+  background: url("../images/site/small_check.jpg");
   color: var(--dark-gray);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
 
 /* General classes */
@@ -88,7 +92,7 @@ body {
 
 .wrapper {
   max-width: 1000px;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .account {
@@ -98,12 +102,10 @@ body {
   font-size: 1.2rem;
 }
 
-
 .account > a {
   display: block;
   color: var(--dark-gray);
-  padding: 0 .8rem;
-
+  padding: 0 0.8rem;
 }
 
 .account > a:hover {
@@ -117,13 +119,13 @@ body {
 .nav_links {
   display: block;
   color: var(--white);
-  padding: .7rem .5rem;
+  padding: 0.7rem 0.5rem;
 }
 
 .footer {
   text-align: center;
   padding: 1rem 1rem 2rem;
-  border-top: .35rem solid var(--dark-gray);
+  border-top: 0.35rem solid var(--dark-gray);
 }
 
 /* HEDAER*/
@@ -133,7 +135,7 @@ body {
 .form-validation {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
   margin-bottom: 1.3rem;
 }
 
@@ -144,7 +146,7 @@ body {
 
 .form-validation input {
   border: 1px solid var(--dark-gray);
-  padding: .2rem .1rem;
+  padding: 0.2rem 0.1rem;
   line-height: 1.4;
   border-radius: 3px;
   width: 170px;
@@ -168,8 +170,8 @@ input[type="submit"] {
   font-size: 1.2rem;
   background-color: var(--blue);
   border: 1px solid var(--dark-gray);
-  padding: .3rem;
-  margin-top: .4rem;
+  padding: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 /** End of specific classes*/
@@ -177,12 +179,12 @@ input[type="submit"] {
 /* Home View */
 
 .home_hero {
-  background: url('../images/delorean.jpg') no-repeat center center;
+  background: url("../images/delorean.jpg") no-repeat center center;
   background-size: 100%;
   aspect-ratio: 3 / 2;
   grid-row: 1 / 2;
   padding: 0 1rem;
-  width: 100%;  
+  width: 100%;
 }
 .home_main {
   display: grid;
@@ -200,7 +202,7 @@ input[type="submit"] {
 .home_own_link {
   display: block;
   border: 1px solid var(--dark-gray);
-  padding: .5rem 1.3rem;
+  padding: 0.5rem 1.3rem;
   background-color: var(--blue);
   color: #000;
   font-family: sans-serif;
@@ -255,7 +257,7 @@ input[type="submit"] {
 /** ERROR PAGE */
 
 .p_error_title {
-  margin: 1rem .5rem;
+  margin: 1rem 0.5rem;
 }
 
 .p_error_msg {
@@ -273,12 +275,10 @@ input[type="submit"] {
   padding: 1rem 0;
 }
 
-
-
 .goToRegister {
   display: block;
   text-decoration: underline;
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 }
 
 /** END LOGIN PAGE */
@@ -295,9 +295,8 @@ input[type="submit"] {
 
 .form-validation small {
   color: #4d5f85;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
-
 
 /** END OF REGISTER PAGE */
 
@@ -343,7 +342,7 @@ input[type="submit"] {
 .add-classification-form span {
   font-size: 1.2rem;
   font-weight: bold;
-  padding-bottom: .4rem;
+  padding-bottom: 0.4rem;
 }
 
 .add-classification-form > label {
@@ -370,7 +369,7 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: .1rem;
+  gap: 0.1rem;
 }
 
 .add-vehicles-form > label > span {
@@ -405,21 +404,43 @@ input[type="submit"] {
   padding: 1rem 0;
 }
 
+/* END OF ADMIN VIEW */
 
-/** END OF ADMIN VIEW */
-
-/** END INVENTORY DISPLAY */
+/**  INVENTORY DISPLAY */
 
 select#classificationList {
   display: block;
   margin: 1rem 0;
 }
 
-#inventoryDisplay td{
-  padding: .2rem .5rem;
+#inventoryDisplay td {
+  padding: 0.2rem 0.5rem;
 }
 
-/** INVENTORY DISPLAY */
+/* END INVENTORY DISPLAY */
+
+/** classification-view */
+
+#inv-display {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display li {
+  margin-bottom: 0.5em;
+  border: 1px #ccc solid;
+  list-style-type: none;
+  flex: 1 1 auto;
+}
+
+#inv-display li img {
+  max-width: 100%;
+  height: 100%;
+}
+
+/* classification-view-end */
 
 /** Tablet to Desktop */
 
@@ -433,7 +454,7 @@ select#classificationList {
   nav {
     font-size: 1.1rem;
   }
-  
+
   .nav_links {
     padding: 1.2rem 1rem;
   }
@@ -441,7 +462,6 @@ select#classificationList {
   .nav_links:hover {
     background-color: var(--blue);
     color: var(--dark-gray);
-    font-weight: bold;
   }
 
   .home_main {
@@ -452,7 +472,6 @@ select#classificationList {
 
   .home_hero {
     grid-column: 1 / span 2;
-    
   }
 
   .home_reviews > h2 {
@@ -462,13 +481,12 @@ select#classificationList {
   .home_reviews {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-
   }
 
   .home_reviews_list {
-     display: flex;
-     flex-direction: column;
-     gap: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
   }
 
   .home_upgrades {
@@ -493,10 +511,40 @@ select#classificationList {
     align-items: start;
   }
 
-
   /** form validation */
 
   .form-validation {
     align-items: start;
   }
+
+  /** classification-view */
+  #inv-display {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  #inv-display h2 {
+    font-size: 1rem;
+  }
+
+  #inv-display img {
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+
+  #inv-display li {
+    max-width: 200px;
+    display: flex;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #inv-display div {
+    width: 100%;
+  }
+  /* classification-view-end */
 }

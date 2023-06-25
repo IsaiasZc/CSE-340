@@ -208,14 +208,14 @@ deleted.</p>";
     $vehicles = getVehiclesByClassification($classificationName);
 
     if (!count($vehicles)) {
-      $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+      $message = "<p class='bad-notice'>Sorry, no $classificationName could be found.</p>";
     } else {
       $vehicleDisplay = buildVehiclesDisplay($vehicles);
     };
 
-    echo $vehicleDisplay;
-    exit;
-    include ' ../view/classification.php';
+    // echo $vehicleDisplay;
+    // exit;
+    include '../view/classification.php';
 
     break;
 

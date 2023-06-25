@@ -12,6 +12,7 @@
 :root {
   --light-gray: #bababa;
   --gray: #8d8d8d;
+  --almost-white: #f4f4f4;
   --dark-gray: #3a3a3a;
   --white: #fff;
   --light-blue: #a6cbeb;
@@ -432,15 +433,40 @@ select#classificationList {
   margin-bottom: 0.5em;
   border: 1px #ccc solid;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
 }
 
 #inv-display li img {
   max-width: 100%;
-  height: 100%;
 }
 
+#inv-display h2,#inv-display span{
+  color: var(--dark-gray);
+}
 /* classification-view-end */
+
+/** vehicle-detail-view */
+.vehicle-display img {
+  width: 100%;
+}
+
+.vehicle-display-info > p {
+  padding: 1rem .5rem;
+}
+
+/* pintar los pares */
+.vehicle-display-info > p:nth-child(even) {
+  background-color: var(--almost-white);
+}
+
+.vehicle-display-price {
+  padding: 1rem .5rem;
+  font-weight: 600;
+}
+
+/* vehicle-detail-view-end */
 
 /** Tablet to Desktop */
 
@@ -526,6 +552,7 @@ select#classificationList {
 
   #inv-display h2 {
     font-size: 1rem;
+    padding: 0;
   }
 
   #inv-display img {
@@ -535,6 +562,10 @@ select#classificationList {
 
   #inv-display li {
     max-width: 200px;
+
+  }
+
+  #inv-display li > a{
     display: flex;
     flex: 1 0 auto;
     text-align: center;
@@ -547,4 +578,16 @@ select#classificationList {
     width: 100%;
   }
   /* classification-view-end */
+
+  .vehicle-display {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /** vehicle-detail-view */
+  .vehicle-display-info > p {
+    padding: 1rem 1rem;
+  }
+  /* vehicle-detail-view-end */
 }

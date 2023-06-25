@@ -219,6 +219,22 @@ deleted.</p>";
 
     break;
 
+  case 'vehicle-info':
+    $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+    $vehicle = getInvItemInfo($invId);
+
+    // validate if the vehicle exists
+    if (!count($vehicle)) {
+      $message = "<p class='bad-notice'>Sorry, no vehicle could be found.</p>";
+    } else {
+      $vehicleDisplay = buildVehicleDisplay($vehicle);
+    };
+
+    // echo $vehicleDisplay;
+    // exit;
+    include '../view/vehicle-detail.php';
+    break;
   default:
     // functions to build classification list
     $classificationList = buildClassificationList($classifications);

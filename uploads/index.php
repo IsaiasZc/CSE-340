@@ -62,6 +62,7 @@ switch ($action) {
     $_SESSION['message'] = $message;
 
     // Redirect to this control
+    header('location: .');
 
     break;
 
@@ -106,7 +107,7 @@ switch ($action) {
     if (count($imageArray)) {
       $imageDisplay = buildImageDisplay($imageArray);
     } else {
-      $imageDisplay = '<p class="notice">Sorry, no images could be found.</p>';
+      $imageDisplay = '<p class="bad-notice">Sorry, no images could be found.</p>';
     }
 
     // Get vehicles information from database

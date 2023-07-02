@@ -180,7 +180,7 @@ input[type="submit"] {
 /* Home View */
 
 .home_hero {
-  background: url("../images/delorean.jpg") no-repeat center center;
+  background: url("../images/vehicles/delorean.jpg") no-repeat center center;
   background-size: 100%;
   aspect-ratio: 3 / 2;
   grid-row: 1 / 2;

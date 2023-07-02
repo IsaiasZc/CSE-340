@@ -222,7 +222,7 @@ deleted.</p>";
   case 'vehicle-info':
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
-    $vehicle = getInvItemInfo($invId);
+    $vehicle = getVehicle($invId);
 
     // validate if the vehicle exists
     if (!count($vehicle)) {

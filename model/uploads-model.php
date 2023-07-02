@@ -68,3 +68,16 @@ function checkExistingImage($imgName)
   $stmt->closeCursor();
   return $imageMatch;
 }
+
+// Get all thumbnail images 
+function getThumbnails($invId)
+{
+  $db = phpmotorsConnect();
+  $sql = 'SELECT imgId, imgPath, imgName, imgDate, inventory.invId, invMake, invModel FROM images JOIN inventory ON images.invId = inventory.invId WHERE images.invId = :invId AND imgName LIKE "%-tn%"';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $imageArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $imageArray;
+}

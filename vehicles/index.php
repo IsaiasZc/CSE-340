@@ -13,6 +13,8 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 // Require the functions library
 require_once '../library/functions.php';
+// require the uploads model
+require_once '../model/uploads-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -224,12 +226,20 @@ deleted.</p>";
 
     $vehicle = getVehicle($invId);
 
+    // thumbnail
+    $thumbnails = getThumbnails($invId);
+
     // validate if the vehicle exists
     if (!count($vehicle)) {
       $message = "<p class='bad-notice'>Sorry, no vehicle could be found.</p>";
     } else {
       $vehicleDisplay = buildVehicleDisplay($vehicle);
     };
+
+    // build the thumbnails
+    if (count($thumbnails)) {
+      $thumbnailsDisplay = buildThumbnailsDisplay($thumbnails);
+    } 
 
     // echo $vehicleDisplay;
     // exit;

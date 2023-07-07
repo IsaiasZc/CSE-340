@@ -32,10 +32,17 @@
         echo $message;
       }
       ?>
+      <section class="vhc-main-cnt">
+      <?php if (isset($thumbnailsDisplay)) {
+        echo $thumbnailsDisplay;
+      } ?>
+
+      <h2 class="vhc-main_thumb-title">Vehicle Thumbnails</h2>
 
       <?php if (isset($vehicleDisplay)) {
         echo $vehicleDisplay;
       } ?>
+      </section>
     </main>
     <footer class="footer">
       <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>

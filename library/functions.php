@@ -243,3 +243,16 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height)
   // Free any memory associated with the old image
   imagedestroy($old_image);
 } // ends resizeImage function
+
+// build thumbnails view
+function buildThumbnailsDisplay($thumbnails)
+{
+  $thumbView = '<ul id="thumbnails-display" class="thumbnails-display">';
+  foreach ($thumbnails as $thumbnail) {
+    $thumbView .= '<li>';
+    $thumbView .= "<img src='$thumbnail[imgPath]' alt='$thumbnail[invMake] $thumbnail[invModel] image on PHP Motors.com'>";
+    $thumbView .= '</li>';
+  }
+  $thumbView .= '</ul>';
+  return $thumbView;
+}

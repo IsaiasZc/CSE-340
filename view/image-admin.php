@@ -42,11 +42,12 @@ if (isset($_SESSION['message'])) {
         echo $message;
       } ?>
 
-      <form action="/phpmotors/uploads/" method="post" enctype="multipart/form-data">
+      <form class="stnd-form" action="/phpmotors/uploads/" method="post" enctype="multipart/form-data">
         <label for="invItem">Vehicle</label>
         <?php echo $prodSelect; ?>
         <fieldset>
           <label>Is this the main image for the vehicle?</label>
+          <br>
           <label for="priYes" class="pImage">Yes</label>
           <input type="radio" name="imgPrimary" id="priYes" class="pImage" value="1">
           <label for="priNo" class="pImage">No</label>

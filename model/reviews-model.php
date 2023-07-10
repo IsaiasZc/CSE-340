@@ -4,7 +4,7 @@
 // function to insert a new review to the reviews table.
 function regReview($reviewText, $invId, $clientId) {
   $db = phpMotorsConnect();
-  $sql = 'INSERT INTO reviews ( reviewText, invId, clientId ) VALUES (:reviewText, :invid, :clientId)';
+  $sql = 'INSERT INTO reviews ( reviewText, invId, clientId ) VALUES (:reviewText, :invId, :clientId)';
   $stmt = $db->prepare($sql);
 
   // Save the 

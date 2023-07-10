@@ -41,7 +41,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
           echo $message;
         }
       ?>
-      <form class="add-classification-form" id="add-classification-form" method="post" action="/phpmotors/vehicles/index.php">
+      <form class="add-classification-form" id="add-classification-form" method="post" action="/phpmotors/vehicles/">
         <label for="classificationName">
           <span>Classification Name</span>
           <input type="text" id="classificationName" name="classificationName" maxlength="30" required>

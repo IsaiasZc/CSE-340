@@ -15,6 +15,8 @@ require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
 // require the uploads model
 require_once '../model/uploads-model.php';
+// require the reviews model
+require_once '../model/reviews-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -224,6 +226,9 @@ deleted.</p>";
   case 'vehicle-info':
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
+    // get reviews
+    $reviews = getReviewsByInvId($invId);
+
     $vehicle = getVehicle($invId);
 
     // thumbnail
@@ -240,6 +245,11 @@ deleted.</p>";
     if (count($thumbnails)) {
       $thumbnailsDisplay = buildThumbnailsDisplay($thumbnails);
     } 
+
+    // build reviews
+    if (count($reviews)) {
+      $reviewsDisplay = buildReviewsDisplay($reviews);
+    }
 
     // echo $vehicleDisplay;
     // exit;

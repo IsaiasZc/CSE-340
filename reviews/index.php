@@ -25,6 +25,24 @@ if ($action == NULL) {
 
 switch ($action) {
   case 'addReview':
+    $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+    echo $reviewText;
+    echo $clientId;
+    echo $invId;
+
+    $regOutcome = regReview($reviewText, $invId, $clientId);
+
+    if ($regOutcome === 1) {
+      echo "<p>Se pudo :')</p>";
+    } else {
+      echo "<p>F mano</p>";
+    }
+
+    include '../view/admin.php';
+    exit;
 
     break;
 

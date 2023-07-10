@@ -256,3 +256,14 @@ function buildThumbnailsDisplay($thumbnails)
   $thumbView .= '</ul>';
   return $thumbView;
 }
+
+function buildReviewsDisplay($reviews) {
+  $reviesView = '<ul id="reviews-display" class="reviews-display">';
+  foreach ($reviews as $review) {
+    $reviesView .= '<li>';
+    $reviesView .= "<p>$review[reviewText]</p>";
+    $reviesView .= '</li>';
+  }
+  $reviesView .= '</ul>';
+  return $reviesView;
+}

@@ -56,14 +56,14 @@ function getReviewsByClientId($clientId) {
 // function to get a specific review
 function getReviewById($reviewId) {
   $db = phpMotorsConnect();
-  $sql = 'SELECT * FROM reviews WHERE reviewId = :reviewId';
+  $sql = 'SELECT reviewDate, reviewText, reviewId, invMake, invModel, clientId FROM reviews INNER JOIN inventory ON reviews.invId = inventory.invId WHERE reviewId = :reviewId';
   $stmt = $db->prepare($sql);
 
   $stmt->bindValue(':reviewId',$reviewId, PDO::PARAM_INT);
 
   $stmt->execute();
 
-  $review = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $review = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
 
   return $review;

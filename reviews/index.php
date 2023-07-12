@@ -49,9 +49,44 @@ switch ($action) {
 
   case 'edit':
 
+    $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+
+
+    $review = getReviewById($reviewId);
+
+    $reviewDate = makeReviewDate($review['reviewDate']);
+
+    include '../view/review-edit.php';
+
     break;
 
   case 'updateReview':
+
+    $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+    $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+    if (empty($reviewId) || empty($reviewText)) {
+      $message = '<p class="notice"> The Review needs to be filled </p>';
+      include '../view/review-edit.php';
+      exit;
+    }
+
+    $updatedReview = updateReview($reviewId, $reviewText);
+
+    if($updatedReview) {
+      $message = '<p class="notice">The Review was updated succesfully.</p>';
+      $_SESSION['message'] = $message;
+      header('location: /phpmotors/accounts/?action=admin');
+
+      exit;
+    } else {
+      $message = '<p class="bad-notice"></p>';
+      $_SESSION['message'] = $message;
+      header('location: /phpmotors/accounts/?action=admin');
+
+      exit;
+
+    }
 
     break;
   

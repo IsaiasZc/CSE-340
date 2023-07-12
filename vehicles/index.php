@@ -163,13 +163,13 @@ switch ($action) {
     }
     $updateResult = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId);
     if ($updateResult) {
-      $message = "<p>Congratulations, the $invMake $invModel was successfully updated.</p>";
+      $message = "<p class='notice'>Congratulations, the $invMake $invModel was successfully updated.</p>";
       $_SESSION['message'] = $message;
       header('location: /phpmotors/vehicles/');
 
       exit;
     } else {
-      $message = "<p>Error. The new vehicle was not updated.</p>";
+      $message = "<p class='bad-notice'>Error. The new vehicle was not updated.</p>";
       include '../view/vehicle-update.php';
       exit;
     }
@@ -179,7 +179,7 @@ switch ($action) {
     $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
     $invInfo = getInvItemInfo($invId);
     if (count($invInfo) < 1) {
-      $message = 'Sorry, no vehicle information could be found.';
+      $message = '<p class="bad-notice">Sorry, no vehicle information could be found.</p>';
     }
     include '../view/vehicle-delete.php';
     exit;

@@ -257,13 +257,43 @@ function buildThumbnailsDisplay($thumbnails)
   return $thumbView;
 }
 
+function makeReviewDate($reviewDate) {
+  $date = strtotime($reviewDate);
+  $formatted_date = date('j F, Y', $date);
+
+  return $formatted_date;
+}
+
 function buildReviewsDisplay($reviews) {
-  $reviesView = '<ul id="reviews-display" class="reviews-display">';
+  $reviewView = '<ul id="reviews-display" class="reviews-display">';
+
   foreach ($reviews as $review) {
-    $reviesView .= '<li>';
-    $reviesView .= "<p>$review[reviewText]</p>";
-    $reviesView .= '</li>';
+
+    $formatted_date = makeReviewDate($review['reviewDate']);
+
+    $reviewView .= '<li>';
+    $reviewView .= "<span>".substr($review['clientFirstname'],0,1)."$review[clientLastname] wrote on $formatted_date</span>";
+    $reviewView .= "<p>$review[reviewText]</p>";
+    $reviewView .= '</li>';
   }
-  $reviesView .= '</ul>';
-  return $reviesView;
+  $reviewView .= '</ul>';
+  return $reviewView;
+}
+
+function buildProductReviewDisplay($reviews) {
+  $reviewView = '<ul id="product-rvw-display" class="product-rvw-display">';
+
+  foreach ($reviews as $review) {
+
+    $formatted_date = makeReviewDate($review['reviewDate']);
+
+    $reviewView .= '<li>';
+    $reviewView .= "$review[invMake] $review[invModel] (Reviewed on $formatted_date): ";
+    $reviewView .= "<a href='/phpmotors/reviews/?action=edit&reviewId=".urlencode($review['reviewId'])."'>Edit</a>";
+    $reviewView .= " | ";
+    $reviewView .= "<a href='/phpmotors/reviews/?action=del&reviewId=".urlencode($review['reviewId'])."'>Delete</a>";
+    $reviewView .= '</li>';
+  }
+  $reviewView .= '</ul>';
+  return $reviewView;
 }

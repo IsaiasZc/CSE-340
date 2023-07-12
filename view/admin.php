@@ -35,7 +35,7 @@ if(!$_SESSION['loggedin']) {
     </nav>
     <main class="main-admin">
     <!-- User full name in h1 tag -->
-    <h1><?php echo $_SESSION['clientData']['clientFirstname'] . ' ' . $_SESSION['clientData']['clientLastname']; ?></h1>
+    <h1><?php echo $clientInfo['clientFirstname'] . ' ' . $clientInfo['clientLastname']; ?></h1>
 
     <?php
       if (isset($_SESSION['message'])) {
@@ -44,9 +44,9 @@ if(!$_SESSION['loggedin']) {
     ?>
     <p>You are logged in</p>
     <ul class="main-admin-info">
-      <li>First Name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
-      <li>Last Name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
-      <li>Email: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
+      <li>First Name: <?php echo $clientInfo['clientFirstname']; ?></li>
+      <li>Last Name: <?php echo $clientInfo['clientLastname']; ?></li>
+      <li>Email: <?php echo $clientInfo['clientEmail']; ?></li>
     </ul>
 
     <!-- Add the accounts managment -->
@@ -56,10 +56,17 @@ if(!$_SESSION['loggedin']) {
     <a class="main-inventory-link" href="/phpmotors/accounts/?action=client-update">Update Account Information</a>
 
     <?php 
-      if ($_SESSION['clientData']['clientLevel'] > 1) {
+      if ($clientInfo['clientLevel'] > 1) {
         echo '<h2>Inventory Management</h2>';
         echo '<p>Use this link to manage the inventory</p>';
         echo '<a class="main-inventory-link" href="/phpmotors/vehicles/">Vehicle Management</a>';
+      }
+    ?>
+
+    <h2>Manage Your Product Reviews</h2>
+    <?php
+      if (isset($reviewsDisplay)) {
+        echo $reviewsDisplay;
       }
     ?>
     </main>

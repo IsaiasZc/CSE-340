@@ -48,6 +48,11 @@
 
         <h2>Customer Review</h2>
         <?php
+        if(isset($revMessage)) {
+          echo $revMessage;
+        }
+        ?>
+        <?php
           if (!isset($_SESSION['loggedin'])) {
             echo '<p>You must <a href="/phpmotors/accounts/?action=login">login</a> to write a review.</p>';
           } else {
@@ -56,7 +61,7 @@
             
             $reviewHTML = '<form class="stnd-form" method="post" action="/phpmotors/reviews/">';
             $reviewHTML .= '<label id="reviewName">Screen Name:</label>';
-            $reviewHTML .= '<input id="reviewName" type="text" name="name" value="'.$_SESSION['clientData']['clientFirstname'].'" disabled/>';
+            $reviewHTML .= '<input id="reviewName" type="text" name="name" value="'.substr($clientInfo["clientFirstname"],0,1).$clientInfo["clientLastname"].'" disabled/>';
             $reviewHTML .= '';
             $reviewHTML .= '<label for="reviewText">Review:</label>';
             $reviewHTML .= '<textarea id="reviewText" name="reviewText"></textarea>';

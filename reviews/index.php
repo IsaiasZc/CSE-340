@@ -33,6 +33,7 @@ switch ($action) {
     echo $clientId;
     echo $invId;
 
+
     $regOutcome = regReview($reviewText, $invId, $clientId);
 
     if ($regOutcome === 1) {
@@ -41,16 +42,20 @@ switch ($action) {
       echo "<p>F mano</p>";
     }
 
-    include '../view/admin.php';
+    header('location: /phpmotors/vehicles/?action=vehicle-info&invId='.$invId.'&reviewed=1');
     exit;
 
     break;
 
-  case 'editReview':
+  case 'edit':
 
     break;
 
   case 'updateReview':
+
+    break;
+  
+  case 'del':
 
     break;
   

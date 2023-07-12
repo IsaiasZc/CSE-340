@@ -24,7 +24,7 @@ function regReview($reviewText, $invId, $clientId) {
 // function to get reviews for a specific inventory item
 function getReviewsByInvId($invId) {
   $db = phpMotorsConnect();
-  $sql = 'SELECT * FROM reviews WHERE invId = :invId';
+  $sql = 'SELECT * FROM reviews INNER JOIN clients ON reviews.clientId = clients.clientId WHERE invId = :invId';
   $stmt = $db->prepare($sql);
 
   $stmt->bindValue(':invId',$invId, PDO::PARAM_INT);
@@ -40,7 +40,7 @@ function getReviewsByInvId($invId) {
 // function to get reviews written by a specific client
 function getReviewsByClientId($clientId) {
   $db = phpMotorsConnect();
-  $sql = 'SELECT * FROM reviews WHERE clientId = :clientId';
+  $sql = 'SELECT reviewDate, reviewId, invMake, invModel FROM reviews INNER JOIN inventory ON reviews.invId = inventory.invId WHERE clientId = :clientId';
   $stmt = $db->prepare($sql);
 
   $stmt->bindValue(':clientId',$clientId, PDO::PARAM_INT);

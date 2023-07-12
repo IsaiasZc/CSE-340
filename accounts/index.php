@@ -11,6 +11,8 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 // Get the accounts model
 require_once '../model/accounts-model.php';
+// Get review model
+require_once '../model/reviews-model.php';
 // Get the functions library
 require_once '../library/functions.php';
 
@@ -132,7 +134,16 @@ switch ($action) {
   
   case 'admin':
 
-    // $clientData = $_SESSION['clientData'];
+    $clientInfo = $_SESSION['clientData'];
+
+    $reviews = getReviewsByClientId($clientInfo['clientId']);
+
+    if(!count($reviews)) {
+      $message = "<p>There are no reviews yet</p>";
+    } else {
+      $reviewsDisplay = buildProductReviewDisplay($reviews);
+    }
+
     include '../view/admin.php';
     break;
   

@@ -225,6 +225,7 @@ deleted.</p>";
 
   case 'vehicle-info':
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    $reviewed = filter_input(INPUT_GET, 'reviewed', FILTER_SANITIZE_NUMBER_INT);
 
     // get reviews
     $reviews = getReviewsByInvId($invId);
@@ -233,6 +234,10 @@ deleted.</p>";
 
     // thumbnail
     $thumbnails = getThumbnails($invId);
+
+    if(isset($reviewed)) {
+      $revMessage = '<p class="notice">Thanks for the review, it is displayed below</p>';
+    }
 
     // validate if the vehicle exists
     if (!count($vehicle)) {

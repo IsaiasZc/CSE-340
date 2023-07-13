@@ -54,17 +54,17 @@
         ?>
         <?php
           if (!isset($_SESSION['loggedin'])) {
-            echo '<p>You must <a href="/phpmotors/accounts/?action=login">login</a> to write a review.</p>';
+            echo '<p>You must <a class="review-login" href="/phpmotors/accounts/?action=login">login</a> to write a review.</p>';
           } else {
 
             $clientInfo = $_SESSION['clientData'];
             
-            $reviewHTML = '<form class="stnd-form" method="post" action="/phpmotors/reviews/">';
-            $reviewHTML .= '<label id="reviewName">Screen Name:</label>';
+            $reviewHTML = '<form class="stnd-form review-form" method="post" action="/phpmotors/reviews/">';
+            $reviewHTML .= '<label for="reviewName">Screen Name:</label>';
             $reviewHTML .= '<input id="reviewName" type="text" name="name" value="'.substr($clientInfo["clientFirstname"],0,1).$clientInfo["clientLastname"].'" disabled/>';
             $reviewHTML .= '';
             $reviewHTML .= '<label for="reviewText">Review:</label>';
-            $reviewHTML .= '<textarea id="reviewText" name="reviewText"></textarea>';
+            $reviewHTML .= '<textarea class="review-box" id="reviewText" name="reviewText" placeholder="Add a Comment..."></textarea>';
             if (isset($clientInfo['clientId'])) {
               $reviewHTML .= '<input type="hidden" name="clientId" value="' . $clientInfo['clientId'] . '">';
             }
@@ -72,7 +72,7 @@
               $reviewHTML .= '<input type="hidden" name="invId" value="' . $invId . '">';
             }
             $reviewHTML .= '<input type="hidden" name="action" value="addReview">';
-            $reviewHTML .= '<input type="submit">Submit Review</input>';
+            $reviewHTML .= '<input type="submit" value="Submit Review">';
             $reviewHTML .= '</form>';
 
             echo $reviewHTML;

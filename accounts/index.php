@@ -129,6 +129,8 @@ switch ($action) {
     // Store the array into the session
     $_SESSION['clientData'] = $clientData;
     // Send them to the admin view
+
+    $clientInfo = $_SESSION['clientData'];
     include '../view/admin.php';
     exit;
   

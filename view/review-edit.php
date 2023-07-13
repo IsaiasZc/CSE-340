@@ -39,7 +39,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientId'] != $review['cli
 
       <p>Reviewed on <?php echo $reviewDate ?></p>
 
-      <form class="stnd-form" method="post" action="/phpmotors/reviews/">
+      <form class="stnd-form review-edit-form" method="post" action="/phpmotors/reviews/">
       
         <label for="reviewText">Review Text</label>
         

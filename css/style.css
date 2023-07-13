@@ -502,6 +502,29 @@ select#classificationList {
 
 /* vehicle-detail-view-end */
 
+/* reviews */
+
+.reviews-display {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.reviews-display > li {
+  border: 1px solid var(--blue);
+  border-radius: .6rem;
+  padding: .5rem 1rem;
+}
+
+.reviews-display > li > p {
+  padding: .5rem 0;
+  padding-left: 1rem;
+  color: var(--gray);
+}
+
+/* reviews-end */
+
 /** Tablet to Desktop */
 
 @media screen and (min-width: 700px) {

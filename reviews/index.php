@@ -91,14 +91,36 @@ switch ($action) {
     break;
   
   case 'del':
+    $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+
+    $review = getReviewById($reviewId);
+
+    $reviewDate = makeReviewDate($review['reviewDate']);
+
+    include '../view/review-delete.php';
 
     break;
   
   case 'deleteReview':
+    $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+
+    $deleteResult = deleteReview($reviewId);
+    
+    if($deleteResult) {
+      $message = '<p class="notice">The Review was deleted succesfully.</p>';
+      $_SESSION['message'] = $message;
+      header('location: /phpmotors/accounts/?action=admin');
+
+      exit;
+    } else {
+      $message = '<p class="bad-notice">Error: The Review was not deleted.</p>';
+      $_SESSION['message'] = $message;
+      header('location: /phpmotors/accounts/?action=admin');
+
+      exit;
+    }
 
     break;
-
-  
 
   default:
 

@@ -22,7 +22,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientId'] != $review['cli
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <title>Review Update | PHP Motors</title>
+  <title>Delete Review | PHP Motors</title>
 </head>
 <body>
   <div class="wrapper" id="wrapper">
@@ -35,20 +35,23 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientId'] != $review['cli
       <?php echo $navList; ?>
     </nav>
     <main class="stnd-main">
-      <h1><?php echo "$review[invMake] $review[invModel]" ?> Review</h1>
+      <h1>Delete <?php echo "$review[invMake] $review[invModel]" ?> Review</h1>
 
       <p>Reviewed on <?php echo $reviewDate ?></p>
+
+      <p class="bad-notice">Deletes cannot be undone, Are you sure you want to delete this review?</p>
 
       <form class="stnd-form" method="post" action="/phpmotors/reviews/">
       
         <label for="reviewText">Review Text</label>
         
-        <textarea name="reviewText" id="reviewText" cols="30" rows="10" required><?php echo $review['reviewText'] ?></textarea>
+        <textarea name="reviewText" id="reviewText" cols="30" rows="10" disabled><?php echo $review['reviewText'] ?></textarea>
 
-        <input type="submit" value="Update">
+        <input type="submit" value="Delete">
 
-        <input type="hidden" name="action" value="updateReview">
-        <input type="hidden" name="reviewId" value="<?php if(isset($review['reviewId'])) {echo $review['reviewId'];}; ?>">
+        <input type="hidden" name="reviewId" id="reviewId" value="<?php if(isset($review['reviewId'])) {echo $review['reviewId'];}; ?>" >
+        
+        <input type="hidden" name="action" value="deleteReview">
       </form>
     </main>
     <footer class="footer">

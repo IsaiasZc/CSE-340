@@ -131,7 +131,7 @@ switch ($action) {
     // Send them to the admin view
 
     $clientInfo = $_SESSION['clientData'];
-    include '../view/admin.php';
+    header('Location: /phpmotors/accounts/?action=admin');
     exit;
   
   case 'admin':

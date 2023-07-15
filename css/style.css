@@ -16,7 +16,7 @@
   --dark-gray: #3a3a3a;
   --white: #fff;
   --light-blue: #a6cbeb;
-  --blue: #4c96d7;
+  --blue: #096CC3;
   --valid: #43ac43;
   --invalid: #d44d4d;
 }
@@ -192,8 +192,9 @@ input[type="submit"] {
   font-size: 1.2rem;
   background-color: var(--blue);
   border: 1px solid var(--dark-gray);
-  padding: 0.3rem;
+  padding: 0.3rem .6rem;
   margin-top: 0.4rem;
+  color: var(--almost-white);
 }
 
 input[type="submit"]:hover {
@@ -230,7 +231,7 @@ input[type="submit"]:hover {
   border: 1px solid var(--dark-gray);
   padding: 0.5rem 1.3rem;
   background-color: var(--blue);
-  color: #000;
+  color: var(--almost-white);
   font-family: sans-serif;
   font-weight: 400;
 }

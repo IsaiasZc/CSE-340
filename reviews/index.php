@@ -29,17 +29,22 @@ switch ($action) {
     $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
-    echo $reviewText;
-    echo $clientId;
-    echo $invId;
+    $currentPath = 'location: /phpmotors/vehicles/?action=vehicle-info&invId='.$invId.'&reviewed=1';
 
+    if (empty($reviewText)) {
+      $revMessage = 1;
+      header("location: /phpmotors/vehicles/?action=vehicle-info&invId=$invId&revMessage=$revMessage");
+      exit;
+    }
 
     $regOutcome = regReview($reviewText, $invId, $clientId);
 
     if ($regOutcome === 1) {
-      echo "<p>Se pudo :')</p>";
+      $message = "<p class='notice'> Review Added.</p>";
     } else {
-      echo "<p>F mano</p>";
+      $message = "<p class='bad-notice'>There was an error. Please try again.</p>";
+      header("location: /phpmotors/vehicles/?action=vehicle-info&invId=$invId");
+      exit;
     }
 
     header('location: /phpmotors/vehicles/?action=vehicle-info&invId='.$invId.'&reviewed=1');

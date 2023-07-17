@@ -226,6 +226,11 @@ deleted.</p>";
   case 'vehicle-info':
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
     $reviewed = filter_input(INPUT_GET, 'reviewed', FILTER_SANITIZE_NUMBER_INT);
+    $revMessage = filter_input(INPUT_GET, 'revMessage', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    if (!empty($revMessage)) {
+      $revMessage = "<p class='bad-notice'>Please provide information for all empty form fields.</p>";
+    }
 
     // get reviews
     $reviews = getReviewsByInvId($invId);
